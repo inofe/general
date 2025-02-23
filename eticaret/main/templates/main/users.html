@@ -1,0 +1,37 @@
+{%extends "main/base.html" %}
+{%load static%}
+{%block title%}My Site Index Page{%endblock%}
+{%block content%}
+
+<style>
+  body{
+    background-color: #5f8248;
+  }
+</style>
+{%if users%}
+  <div class="grid-box">
+    {%for user in users%}
+      <div class="grid-box-item">
+        <h2>{{user.name}}</h2>
+        <p>{{user.email}}</p>
+        <!-- <a href="{% url 'main:user' user.id %}"> user page </a> -->
+        <a href="{{ user.get_absolute_url }}"> user page </a> 
+        <!-- bu da alternatif bir yontem fonksiyon icin models e bakınız 
+            (in models.py)
+            def get_absolute_url(self):
+                return reverse("main:user",kwargs={"id":self.id}) 
+        --->
+      </div>
+    {%endfor%}
+  </div>
+{%else%} 
+  <div class="grid-box-item">No user found</div>
+  <div class="grid-box-item">No user found</div>
+  <div class="grid-box-item">No user found</div>
+  <div class="grid-box-item">No user found</div>
+{%endif%}
+
+
+
+
+{%endblock%}

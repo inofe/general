@@ -1,0 +1,22 @@
+{% if user.is_authenticated %}
+    user is already logged in
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    
+    <button type="submit" value="login">login</button>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+                {{break}}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="../">home</a>
+    <a href="../register/">register</a>
+{% endif %}

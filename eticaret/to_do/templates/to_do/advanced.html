@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+{% block content %}
+<style>
+    .item-box {
+        border: 2px solid greenyellow;
+        border-radius: 10px;
+        margin-top: 20px;
+        width: 400px;
+    }
+</style>
+
+{% if todoitems %}
+    {% for todoitem in todoitems %}
+        <div class="item-box">
+            <h1>{{ todoitem.title }}</h1>
+            <h2>{{ todoitem.completed }}</h2>
+            <form method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ todoitem.id }}">
+                <button type="submit" name="delete_form">Delete</button>
+            </form>
+             <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ todoitem.id }}">
+                {{ edit_forms.todoitem.id.as_p }}
+                <button type="submit" name="edit_form">Edit</button>
+            </form>
+        </div>
+    {% endfor %}
+{% else %}
+    <h1>No item found</h1>
+{% endif %}
+
+{% if create_form %}
+<h4 style="margin-top: 10px;">add new item</h4>
+    <form method="post" style="margin-top: 10px;">
+        {% csrf_token %}
+        {{ create_form.as_p }}
+        <button type="submit" style="width: 100%;" name="create_form">Submit</button>
+    </form>
+{% endif %}
+{% endblock %}

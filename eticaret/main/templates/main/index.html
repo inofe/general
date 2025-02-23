@@ -1,0 +1,51 @@
+{%extends "main/base.html" %}
+{%load static%}
+{%block title%}My Site Index Page{%endblock%}
+{%block content%}
+<main>
+<h1>Welcome to the Index Page</h1>  
+<p>This is the content of the index page.</p>
+<div class="grid-box">
+  {%if users%}
+    {%for user in users%}
+      <div class="grid-box-item">
+        <h2>{{user.name}}</h2>
+        <p>{{user.email}}</p>
+        <a href="{% url 'main:users'%}"> user page </a>
+      </div>
+    {%endfor%}
+  {%else%} 
+  <div class="grid-box-item">No user found</div>
+  <div class="grid-box-item">No user found</div>
+  <div class="grid-box-item">No user found</div>
+  <div class="grid-box-item">No user found</div>
+  {%endif%}
+</div>
+
+ {# url 'main:get_data' böyle kullanımda appName  :   urlName sen hep süreklü / koyuyorsun araya o yanlış #}
+ {# This is a comment in a Django template. It will not appear in the output HTML. #}
+
+
+<div class="swiper-box">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+          <div class="swiper-slide">Slide 4</div>
+          <div class="swiper-slide">Slide 5</div>
+          <div class="swiper-slide">Slide 6</div>
+          <div class="swiper-slide">Slide 7</div>
+          <div class="swiper-slide">Slide 8</div>
+          <div class="swiper-slide">Slide 9</div>
+        </div>
+      </div>
+</div>
+
+<button hx-get="{% url 'main:get_data' %} " 
+hx-target="#result">Click me</button>
+<div id="result"></div>
+
+
+</main>
+{%endblock%}

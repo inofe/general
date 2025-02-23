@@ -1,0 +1,33 @@
+{%extends "main/base.html" %}
+{%load static%}
+{%block title%}My Site Index Page{%endblock%}
+{%block content%}
+
+<style>
+    .user-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        color: palegreen;
+        font-size: 30px;
+    }
+</style>
+{%if user%}
+<div class="user-card">
+    <p>{{user.name}}</p>
+    
+    <p>{{user.email}}</p>
+</div>
+    
+
+{%endif%}
+
+{%endblock%}
+
+

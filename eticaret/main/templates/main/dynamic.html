@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+  My Site Dynamic Page
+{% endblock %}
+
+{% block content %}
+  <form method="post" hx-post="{% url 'main:dynamic' %}" hx-target="#dynamic-content" hx-swap="innerHTML">
+    {% csrf_token %}
+    <input type="text" name="name" id="name" />
+    <input type="text" name="last_name" id="last_name" />
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="dynamic-content" style="width: 100%;">
+   
+      {% comment %} {% include 'main/dynamic_content.html' %} {% endcomment %}
+    
+  </div>
+{% endblock %}

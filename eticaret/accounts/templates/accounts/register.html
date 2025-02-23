@@ -1,0 +1,22 @@
+<h1>register</h1>
+
+{% if user.is_authendicated %}
+user is already logged in
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="username" required />
+    <input type="password" name="password" placeholder="password" required />
+    <input type="password" name="confirm-password" placeholder="confirm password"  required/>
+  
+    <button type="submit" value="login">register</button>
+  
+    {% if messages %}
+      {% for message in messages %}
+        {{ message }}
+      {% endfor %}
+    {% endif %}
+  </form>
+  
+{% endif %}
+<a href="../">home</a>

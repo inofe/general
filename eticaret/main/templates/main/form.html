@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}My Site Form Page{% endblock %}
+{% block content %}
+
+{% if form %}
+{% load crispy_forms_tags %}
+<form method="post" >
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+</form>
+{% endif %}
+<hr style="height: 10px;width: 100%; margin-bottom: 30px; color:black;">
+
+{%if personForm%}
+
+<form method="post" >
+    {% csrf_token %}
+    {{ personForm|crispy }}
+    <button type="submit" class="btn btn-primary w-100">Submit</button>
+
+</form>
+{% endif %}
+
+
+{% endblock %}
