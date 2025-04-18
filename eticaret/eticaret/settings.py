@@ -129,7 +129,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://django.inanhayat.com.tr",
+]
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
